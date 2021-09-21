@@ -1,6 +1,11 @@
 <template>
   <div class="vitem" :id="comment.objectId">
-    <img v-if="avatar" class="vuser" aria-hidden="true" :src="avatar" />
+    <img
+      v-if="comment.avatar"
+      class="vuser"
+      aria-hidden="true"
+      :src="comment.avatar"
+    />
     <div class="vcard">
       <div class="vhead">
         <a
@@ -104,17 +109,6 @@ export default defineComponent({
       return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
     });
 
-    const avatar = computed(() => {
-      const userData = props.comment;
-      const avatarConfig = config.value.avatar;
-
-      return !userData || avatarConfig.hide
-        ? false
-        : 'type' in props.comment || avatarConfig === null
-        ? props.comment.avatar
-        : `${avatarConfig.cdn}${props.comment.mail}${avatarConfig.param}`;
-    });
-
     const isReplyingCurrent = computed(
       () => props.comment.objectId === props.reply?.objectId
     );
@@ -123,7 +117,6 @@ export default defineComponent({
       config,
       locale,
 
-      avatar,
       isReplyingCurrent,
       link,
       timeAgo,

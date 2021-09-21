@@ -6,13 +6,7 @@
           <CloseIcon size="14" />
         </button>
 
-        <img
-          :src="
-            userInfo.avatar ||
-            `${config.avatar.cdn}${userInfo.mailMd5}${config.avatar.param}`
-          "
-          alt="avatar"
-        />
+        <img :src="userInfo.avatar" alt="avatar" />
       </div>
       <a
         href="#"
